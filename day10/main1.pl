@@ -30,7 +30,6 @@ sub print_maze {
     }
 }
 
-# Find S
 sub find_s {
     my ($sx, $sy) = (-1, -1);
     OUTER: for (my $y=0; $y<=$#rows; ++$y) {
@@ -56,7 +55,7 @@ sub find_s_dirs {
 }
 
 my %seen;
-sub build_graph {
+sub get_next_steps {
     my ($depth, $sx, $sy, @dirs) = @_;
     my $node = "$sx,$sy";
     return if exists $seen{$node};
@@ -139,12 +138,12 @@ my ($sx, $sy) = find_s();
 my @dirs = find_s_dirs($sx, $sy);
 
 my $depth = 0;
-my @todo = build_graph($depth, $sx, $sy, @dirs);
+my @todo = get_next_steps($depth, $sx, $sy, @dirs);
 do {
     my @newtodo;
     ++$depth;
     foreach my $step (@todo) {
-        push @newtodo, build_graph($depth, $step->{'x'}, $step->{'y'}, $step->{'dir'});
+        push @newtodo, get_next_steps($depth, $step->{'x'}, $step->{'y'}, $step->{'dir'});
     }
     @todo = @newtodo;
 } while scalar(@todo) > 0;

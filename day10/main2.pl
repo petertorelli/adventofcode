@@ -33,7 +33,6 @@ sub print_maze {
     }
 }
 
-# Find S
 sub find_s {
     my $data = shift @_;
     my @rows = @$data;
@@ -62,7 +61,7 @@ sub find_s_dirs {
     return $dirs;
 }
 
-sub build_graph {
+sub get_next_steps {
 
     my $data = shift @_;
     my @rows = @$data;
@@ -139,12 +138,12 @@ sub trace_edges {
     my ($sx, $sy, $dirs, $maxx, $maxy) = @_;
     my $depth = 0;
     my %seen;
-    my @todo = build_graph(\@rows, \%seen, $depth, $sx, $sy, $dirs, $maxx, $maxy);
+    my @todo = get_next_steps(\@rows, \%seen, $depth, $sx, $sy, $dirs, $maxx, $maxy);
     do {
         my @newtodo;
         ++$depth;
         foreach my $step (@todo) {
-            push @newtodo, build_graph(
+            push @newtodo, get_next_steps(
                 \@rows,
                 \%seen,
                 $depth,
