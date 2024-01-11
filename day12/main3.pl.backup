@@ -1,0 +1,137 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+
+my $debug = 0;
+
+sub build_at {
+    my ($start, $goal, @pattern) = @_;
+    print("build_at(start=$start goal=$goal ".join("", @pattern).")\n");
+    my $found;
+    my $tally;
+    my $i;
+
+    $i = $start;
+    $tally = 0;
+    $found = 0;
+
+    LOOP1: while (1) {
+        if ($tally != $goal) {
+            if ($i > $#pattern) {
+                print "   build_at: Fail because we missed goal and are at end\n";
+                last LOOP1;
+            }
+        }
+        else {
+            if ($i > $#pattern) {
+                print "   build_at: Pass because $i is >= $#pattern\n";
+                $found = 1;
+            }
+            elsif ($pattern[$i] eq '#') {
+                print "   build_at: Fail because value at i=$i is '#'\n";
+            }
+            else {
+                print "   build_at: Pass because value at i=$i is '?'\n";
+                $pattern[$i] = '.';
+                $found = 1;
+            }
+            last LOOP1;
+        }
+
+        my $c = $pattern[$i];
+
+        if ($c eq '.') {
+            last LOOP1;
+        }
+        elsif ($c eq '?') {
+            $pattern[$i] = '#';
+            ++$tally;
+        }
+        elsif ($c eq '#') {
+            ++$tally;
+        }
+        else {
+            last LOOP1;
+        }
+        ++$i;
+    }
+    return ($found, $i+1, @pattern);
+}
+
+sub sliding_build {
+    my ($start, $count, @island) = @_;
+    print "sliding_build($start,$count,@island)\n";
+}
+
+
+sub walk_island {
+    my ($start_cidx, $xisland, @counts) = @_;
+    print("walk_island(start_cidx=$start_cidx, $xisland, @counts)\n");
+    my @island = split("", $xisland);
+    my $pos = 0;
+    my $cidx = $start_cidx;
+    LCOUNT: for ( ; $cidx <= $#counts; ++$cidx) {
+        print " walking: got a new count: $counts[$cidx]\n";
+        LPOS: while ($pos <= $#island) {
+            print " walking: pos=$pos\n";
+            &sliding_build($pos, $counts[$cidx], @island);
+
+
+
+
+
+            my ($ret, $next, @nisland) = &build_at($pos, $counts[$cidx], @island);
+            if ($ret) {
+                print("  ret=$ret next=$next ".join("", @nisland)."\n");
+
+                $pos = $next;
+                @island = @nisland;
+                last LPOS;
+            } else {
+                if ($island[$pos] eq '#') {
+                    last LCOUNT;
+                } else {
+                    $island[$pos] = "." if $island[$pos] eq '?';
+                    ++$pos;
+                }
+            }
+        }
+        if ($pos >= $#island) {
+            print "Exiting LCOUNT because at end of island\n";
+            last LCOUNT;
+        }
+    }
+    return $cidx + 1;
+}
+
+sub analyze {
+    my ($xpattern, $xcounts) = @_;
+    my @counts = @$xcounts;
+    my @pattern = split("", $xpattern);
+
+    $xpattern =~ s/^\.//;
+    my @islands = split(/\.+/, $xpattern);
+
+    # How many sequential groups can we make out of each island?
+    # Can we then arrange those groups into solutions?
+    print "@islands\n";
+    my $cidx = 0;
+    ISLAND_LOOP: foreach my $xisland (@islands) {
+        print "Island $xisland cidx=$cidx = $counts[$cidx]\n";
+        my $progress = &walk_island($cidx, $xisland, @counts);
+        printf("... found $progress counts in this island\n");
+        $cidx = $progress;
+    }
+
+}
+
+
+while (<>) {
+    print;
+
+    my ($xpattern, $xcounts) = (split);
+    my @pattern = split("", $xpattern);
+    my @counts = split(",", $xcounts);
+
+    &analyze($xpattern, \@counts);
+}
