@@ -36,7 +36,9 @@ sub process {
         # remember the array has the end "telomere"
         my @curr_solns = split('', (0 x ($#springs + 2)) . 0);
 
+        # The accumulated solutions to the right of a valid solution
         my $acc = 0;
+        # The current size of the (?|#) pattern we've built.
         my $build = 0;
 
         # Now slide that record backwards and see how many places it fits...
