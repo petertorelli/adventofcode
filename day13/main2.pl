@@ -77,20 +77,13 @@ sub off_by_one {
     my ($r0, $r1) = @_;
     my $diff = 0;
     my $pos = -1;
-    #print "\t".join("", @$r0)."\n";
-    #print "\t".join("", @$r1)."\n";
     for (my $i=0; $i < scalar(@$r0); ++$i) {
         if ($r0->[$i] ne $r1->[$i]) {
             ++$diff;
             $pos = $i;
         }
     }
-    if ($diff == 1) {
-        #print "\t\toff by one\n";
-        return $pos;
-    } else {
-        return -1;
-    }
+    return $diff == 1 ? $pos : -1;
 }
 
 sub find_potential_smudge_rows {
