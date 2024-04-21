@@ -23,7 +23,7 @@ Sneaky. Very sneaky.
 
 
 ## Test Data Cycle
-
+```
 Cycle 1 was NOT seen -- score = 87
 Cycle 2 was NOT seen -- score = 69
 Cycle 3 was NOT seen -- score = 69
@@ -47,9 +47,9 @@ Cycle 19 was seen before at cycle 5 -- score = 65
 
 4 + ((N - 11) % 7) = lookup for test
 N=1e9 --> 6 --> 64
-
+```
 ## Input Data Cycle
-
+```
 Cycle 1 was NOT seen -- score = 97447
 Cycle 2 was NOT seen -- score = 97467
 :
@@ -83,7 +83,7 @@ Cycle 134 was seen before at cycle 116 -- score = 91320
 111 + ((N - 120) % 9) = Lookup
 
 N=1,000,000,000 --> 118
-
+```
 
 
 
