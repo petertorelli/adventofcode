@@ -225,49 +225,11 @@ sub main {
             #print "XMAX $XMAX, YMAX $YMAX\n";
 
             my $score = 0;
-            my $x;
-            my $y;
-            for ($x=0; $x<$XMAX; ++$x) {
-                undef @energy;
-                &fill_energy();
-                $y = 0;
-                &go(\@matrix, $x, $y, 's');
-                $score = printe(\@energy);
-                print "score[$x,$y] $score\n";
-
-                $max = $score > $max ? $score : $max;
-
-                undef @energy;
-                &fill_energy();
-                $y = $YMAX - 1;
-                &go(\@matrix, $x, $y, 'n');
-                $score = printe(\@energy);
-                print "score[$x,$y] $score\n";
-
-                $max = $score > $max ? $score : $max;
-
-            }
-            for ($y=0; $y<$YMAX; ++$y) {
-                undef @energy;
-                &fill_energy();
-                $x = 0;
-                &go(\@matrix, $x, $y, 'e');
-                $score = printe(\@energy);
-                print "score[$x,$y] $score\n";
-                $max = $score > $max ? $score : $max;
-
-                undef @energy;
-                &fill_energy();
-                $x = $XMAX - 1;
-                &go(\@matrix, $x, $y, 'w');
-                $score = printe(\@energy);
-                print "score[$x,$y] $score\n";
-                $max = $score > $max ? $score : $max;
-
-           }
-            #print "\n";
-            #printm(\@matrix);
-            print "MAX $max\n";
+            undef @energy;
+            &fill_energy();
+            &go(\@matrix, 0, 0, 'e');
+            $score = printe(\@energy);
+            print "$score\n";
         }
     }
 }
