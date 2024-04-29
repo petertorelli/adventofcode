@@ -116,7 +116,6 @@ sub main {
             my $score = &search(\@grid, [0, 0], [$XMAX - 1, $YMAX - 1]);
             print "$score\n";
             last;
-            #&a_star(\@grid, [0, 0], [2, 1]);
         } else {
             push @grid, [ split '' ];
         }
