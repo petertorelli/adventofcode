@@ -53,7 +53,6 @@ sub walk {
     my %seen;
     my @todo;
     my $curstep;
-    my @cycles;
 
     push @todo, [ 0, $start ];
     my $laststep = 0;
