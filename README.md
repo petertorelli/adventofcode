@@ -10,4 +10,5 @@ Day 17 example scoring was a tad confusing.
 
 Day 20.2 solved by visual inspection of four different cycles
 
+Day 21.2 solved with help from Excel, not a general solution though
 
