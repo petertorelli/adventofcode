@@ -14,6 +14,8 @@ though. By coloring the bricks I was lucky to identify a problem in the first
 15 rows and zeroed in on the bad brick, which led to the conditional bug
 discovery. Clunky, but it worked.
 
+https://playground.babylonjs.com/#SRZRWV#1917
+
 ## Part 2
 
 Really easy: Just save/restore the main structures, remove a brick, and run
