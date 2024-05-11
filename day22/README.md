@@ -10,4 +10,7 @@ Found it by using an online `Babylon.JS` viewer. See `writebabs` code.
 
 ## Part 2
 
+Just save/restore the main structures, remove a brick, and run the relaxation
+function.
+
 
