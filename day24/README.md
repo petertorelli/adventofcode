@@ -31,4 +31,6 @@ that minimizes the projected area of the bounding box.
 This works! But now how do I reconstruct the line at the two thetas when
 the area goes to zero? and how do I quantize these coordinates to integers?
 
+Oh crap, I forgot about commuitivity of matrices, I need a quaternion.
+
 To be continued...
