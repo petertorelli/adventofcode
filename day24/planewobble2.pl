@@ -92,8 +92,8 @@ sub main {
     # this will be biased toward more sensitivity closer to to the radius
     # because small changes in theta are small changes in perspective
     # proably should use uniformly distributed vectors in a hemisphere?
-    my ($th0, $th1) = (0, pi * 2);
-    my ($ph0, $ph1) = (0, pi * 2);
+    my ($th0, $th1) = (0, pi / 1.5);
+    my ($ph0, $ph1) = (0, pi / 1.5);
     #$th0 = 0.84;
     #$th1 = $th0;
     #$ph0 = 0.05;
@@ -103,7 +103,9 @@ sub main {
     for (my $exp = 1; $exp < 20; ++$exp) {
         my $inc = 1 * 10 ** (-$exp);
         my @scores;
-        for (my $theta = $th0 - $eps; $theta < ($th1 + $eps); $theta += $inc) {
+        #for (my $theta = $th0 - $eps; $theta < ($th1 + $eps); $theta += $inc) {
+        for (my $ti = 0; $ti <= 20; ++$ti) {
+            my $theta = ($th0 - $eps) + ($ti * $inc);
             my $cth = cos($theta);
             my $sth = sin($theta);
             my $Ry = Math::Matrix->new(
@@ -111,7 +113,9 @@ sub main {
                 [     0,     1,     0 ],
                 [ -$sth,     0,  $cth ]
             );
-            for (my $phi = $ph0 - $eps; $phi <= ($ph1 + $eps) ; $phi += $inc) {
+            #for (my $phi = $ph0 - $eps; $phi <= ($ph1 + $eps) ; $phi += $inc) {
+            for (my $pi = 0; $pi <= 20; ++$pi) {
+                my $phi = ($ph0 - $eps) + ($pi * $inc);
                 my $cph = cos($phi);
                 my $sph = sin($phi);
                 my $Rx = Math::Matrix->new(
