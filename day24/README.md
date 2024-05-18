@@ -122,3 +122,25 @@ Does it hit this line?
 
 276481733510955, 270867065789660, 273768862611813 @ 35, 20, 33
 
+Screw this... i'm fussing with precision which is not the right way, at least
+compared to the other 23 problems that all had a neat solution.
+
+### Fourth thoughts
+
+I know that there is a camera vector where if we look down it we see the
+area of the bounding box around the intesections is zero in the plane that
+is normal to the camera vector at the camera eye.
+
+This will be the line that hits all the hailstones.
+
+Is there a minimum # of hailstones we need to solve this camera orientation?
+
+I'm guessing 3 lines is sufficient to anchor the camera point. I can think
+of cases where three isn't enough, but if there is definitely a solution, then
+there should be three that lock it down?
+
+Normally there is no solution to the general problem, but since we KNOW there
+is a solution can we find some shortcuts in the dataset...?
+
+Let's look through the data...
+
