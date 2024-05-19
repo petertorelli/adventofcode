@@ -149,8 +149,6 @@ area=0.000001179741193149999940639316 theta=0.840990267110029332542353586177 phi
 area=0.000000007002115370619999644956 theta=0.840990267110029332542353586177 phi=0.064288965443247803044357624458
 area=0.000000000052637825999999997371 theta=0.840990267110029332542353586177 phi=0.064288965443247803044357624458
 
-
-
 Screw this... i'm fussing with precision which is not the right way, at least
 compared to the other 23 problems that all had a neat solution.
 
@@ -173,3 +171,109 @@ is a solution can we find some shortcuts in the dataset...?
 
 Let's look through the data...
 
+### Fifth Solution
+
+Ok, done with this camera thing... Let's just play with the vectors and
+see if I can convert this into a set of N variables and N equations and then
+see if there's a linear equation sol'n in there. THere's like a dozen variables.
+
+...
+
+Looks like we can reduce this because we know there are intersection points
+because there IS a solution to the puzzle. So the fact that all the 
+equations share the thrown rock values is probably the reduciton.
+
+Writing this out is killing me, we've got Rock & Hailstone's Position XYZ,
+Velocity XYZ, and t. We know t and the position of the rock will be the
+same for each hailstone when they hit but still so many variables.
+
+Annoying-ass notation:
+
+* HI for the Ith hailstone
+* R for the rock
+* P for position
+* V for velocity
+* t for ... t
+
+After half a pad of engineering paper this makes it look easy...
+
+```
+RP + t * RV = HIP + t * HIV
+
+t = (RP - HIP) / (HIV - RV)
+```
+or
+
+```
+t = (RPx - HIPx) / (HIVx - RVx)
+t = (RPy - HIPy) / (HIVy - RVy)
+t = (RPz - HIPz) / (HIVz - RVz)
+```
+
+We have a lot of this data, let's take them as pairs...
+
+For X & Y...
+
+```
+(RPx - HIPx) / (HIVx - RVx) = (RPy - HIPy) / (HIVy - RVy)
+
+->
+
+(RPx - HIPx) * (HIVy - RVy) = (RPy - HIPy) * (HIVx - RVx)
+
+->
+
+(RPx * HIVy) - (HIPx * HIVy) - (RPx * RVy) + (HIPx * RVy) = 
+(RPy * HIVx) - (HIPy * HIVx) - (RPy * RVx) + (HIPy * RVx)
+```
+
+Let drag the rock parts to the left since every hailstone collision shares them.
+
+
+```
+  (RPy * RVx) - (RPx * RVy)  <--- call this guy "W"
+=
+  (RPy * HIVx) - (HIPy * HIVx) + (HIPy * RVx)
+- (RPx * HIVy) + (HIPx * HIVy) - (HIPx * RVy)
+
+```
+
+W is a defining property of the rock we are throwing, so it never changes. It
+is the same for all hailstones. Whcih means if we replace 'I' with 1 and 2...
+
+
+```
+W
+= 
+  (RPy * H1Vx) - (H1Py * H1Vx) + (H1Py * RVx)
+- (RPx * H1Vy) + (H1Px * H1Vy) - (H1Px * RVy)
+=
+  (RPy * H2Vx) - (H2Py * H2Vx) + (H2Py * RVx)
+- (RPx * H2Vy) + (H2Px * H2Vy) - (H2Px * RVy)
+
+collecting terms to keep track of signs...
+
+  (RPy * H1Vx) - (H1Py * H1Vx) + (H1Py * RVx)
+- (RPx * H1Vy) + (H1Px * H1Vy) - (H1Px * RVy)
+- (RPy * H2Vx) + (H2Py * H2Vx) - (H2Py * RVx)
++ (RPx * H2Vy) - (H2Px * H2Vy) + (H2Px * RVy)
+
+= 0
+
+```
+
+So by grinding and grinding and grinding and checking and re-checking
+eventually you can solve a 4x5 equation and derive RPx, RPy, RVx, RVy by
+simply putting this into a gauss-jordan elimination sovler. Since you need
+four rows, just take the first five rocks in pairs and run the above equation
+through it (edit: I had a bunch of signs wrong but didn't feel like fixing
+it, just look at the code...).
+
+Once you've solved for these four variables, there are still two left. This
+time you only need two pairs of stones, and the equations are exactly the
+same as the manipulation above. Except this time around it is a 2x3 matrix
+solving for RPz, RVz.
+
+Really annoyed I didn't start this way first. Not sure why I was so bent
+on manipulating a plane and fussing with precision. Probably because 
+precision is fascinating.

@@ -16,6 +16,9 @@ sub find_intersections {
             my $m2 = $lines->{$l2}{m2d};
             
             # Parallel?
+            if ($m1 == $m2) {
+                print "$l1 and $l2 are parallel\n";
+            }
             next if $m1 == $m2;
 
             my $b1 = $lines->{$l1}{b2d};
@@ -67,8 +70,8 @@ sub main {
     }
 
     # N * (N - 1) mpf;
-#    &find_intersections(\%lines, 7, 27);
-    &find_intersections(\%lines, 200000000000000, 400000000000000);
+    &find_intersections(\%lines, 7, 27);
+#    &find_intersections(\%lines, 200000000000000, 400000000000000);
 }
 
 &main;
