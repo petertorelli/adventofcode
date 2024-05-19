@@ -12,3 +12,5 @@ Day 20.2 solved by visual inspection of four different cycles
 
 Day 21.2 solved with help from Excel, not a general solution though
 
+Day 24.2 can eat it. Keeping track of all the variables, superscripts, subscripts, and signs was just annoying.
+
