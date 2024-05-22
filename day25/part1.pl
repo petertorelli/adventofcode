@@ -59,6 +59,33 @@ sub printdotty {
     print "}\n";
 }
 
+
+sub printedges {
+    my ($g) = @_;
+    # convert nodes from ascii to integers
+    my $index = 0;
+    my %map;
+    foreach my $k (keys %$g) {
+        $map{$k} = $index++;
+    }
+    my $edges = 0;
+    print "#$index\n";
+    #foreach my $k (keys %$g) {
+    #    my $node = $g->{$k};
+    #    foreach my $k2 (keys %$node) {
+    #        ++$edges;
+    #    }
+    #}
+    #print "#$edges\n";
+    foreach my $k (keys %$g) {
+        my $node = $g->{$k};
+        foreach my $k2 (keys %$node) {
+            my $i1 = $map{$k};
+            my $i2 = $map{$k2};
+            print "$i1 $i2\n";
+        }
+    }
+}
 sub snip {
     my ($g, $a, $b) = @_;
     return unless defined $g->{$a};
@@ -72,7 +99,8 @@ sub main {
     my %graphuni;
     &readstdin(\%graphbi, \%graphuni);
     #&printdotty(\%graphbi);
-
+    &printedges(\%graphbi);
+die;
     # Part 1 - Test Dataset
 
     if (0) {

@@ -14,6 +14,7 @@ Day 21.2 solved with help from Excel, not a general solution though
 
 Day 24.2 can eat it. Keeping track of all the variables, superscripts, subscripts, and signs was just annoying.
 
-Day 25 I created a Graphviz Dotty file and ran Force Directed analysis in Gephi until the three paths appeared. I'm pretty sure a Force-Directed graph algorithm in Perl would be DOG SLOW.
+Day 25 I wrote a force-directed graph plotter and observed when the clusters
+formed, then extracted the longest edges and re-ran the coalesce code.
 
 
