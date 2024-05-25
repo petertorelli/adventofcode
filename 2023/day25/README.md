@@ -46,3 +46,6 @@ I forgot how useful `plotutils` can be. Very easy to create animations in
 C on linux. MacOS required some fussing to rebuild it since by default
 brew and macports do not compile plotutils-2.6 with X. Feh.
 
+Made an mpeg using ffmpeg ...
+
+https://github.com/petertorelli/advent2023/assets/8249735/38fe5a39-363c-46d8-ad5c-d48884c00e28
