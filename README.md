@@ -1,2 +1,1 @@
-2023 was so fun I'm doing 2022.
-
+2023 was the year of PERL. This year I'm getting my Python house in order.
