@@ -15,17 +15,16 @@ def part1():
 def part2():
     with open(sys.argv[1], 'r') as file:
         acc = 0
-        skip = False
+        skip = 1
         for line in file:
             matches = re.findall(r"(mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\))", line)
             for m in matches:
                 if m[0] == 'do()':
-                    skip = False
+                    skip = 1
                 elif m[0] == 'don\'t()':
-                    skip = True
+                    skip = 0
                 else:
-                    if skip == False:
-                        acc += int(m[1]) * int(m[2])
+                    acc += skip * int(m[1]) * int(m[2])
         print("Part 2:", acc)
 
 part1()
