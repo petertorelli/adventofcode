@@ -6,3 +6,5 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 2   | minutes | More vector math; numpy |
 | 3   | minutes | Basic regex |
 | 4   | ~1 hour | More numpy matrix stuff (started with regex but then part2 required a restart) |
+| 5   | 15 min. | More array play with a dictionary. Brute force is still viable this early |
+
