@@ -18,10 +18,7 @@ def fetch(m, target, i0, i1, ix, j0, j1, jx):
         res = m[i0:i1:ix, j0]
     else:
         res = m[i0:i1:ix, j0:j1:jx].diagonal()
-    if len(res) == n and (res == target).all():
-        return 1
-    else:
-        return 0
+    return 1 if len(res) == n and (res == target).all() else 0
 
 def check1(m, i, j):
     if m[i][j] != 'X':
@@ -49,10 +46,7 @@ def check2(m, i, j):
     acc += fetch(m, target, i+1, i+1-n, -1, j+1, j+1-n, -1)
     acc += fetch(m, target, i-1, i-1+n,  1, j+1, j+1-n, -1)
     acc += fetch(m, target, i+1, i+1-n, -1, j-1, j-1+n,  1)
-    if acc == 2:
-        return 1
-    else:
-        return 0
+    return 1 if acc == 2 else 0
 
 def looper(m, func):
     # probably a numpy reduce function for this...
