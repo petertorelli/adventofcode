@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+
+import sys
+import numpy as np
+import re
+
+# hitting issues when diagonal slice goes negative, hence this mess:
+def fetch(m, target, i0, i1, ix, j0, j1, jx):
+    n = len(target)
+    val = 0
+    # Not sure why diagonal checks hate negative numbers?
+    if i1 < 0:
+        i1 = None
+    if j1 < 0:
+        j1 = None
+    if i0 == i1:
+        res = m[i0, j0:j1:jx]
+    elif j0 == j1:
+        res = m[i0:i1:ix, j0]
+    else:
+        res = m[i0:i1:ix, j0:j1:jx].diagonal()
+    if len(res) == n and (res == target).all():
+        val = 1
+    return val
+
+def check1(m, i, j):
+    if m[i][j] != 'X':
+        return False
+    target = ['X', 'M', 'A', 'S']
+    n = len(target)
+    acc = 0
+    acc += fetch(m, target, i, i-n, -1, j, j  ,  1)
+    acc += fetch(m, target, i, i+n,  1, j, j  ,  1)
+    acc += fetch(m, target, i, i  ,  1, j, j+n,  1)
+    acc += fetch(m, target, i, i  ,  1, j, j-n, -1)
+    acc += fetch(m, target, i, i+n,  1, j, j+n,  1)
+    acc += fetch(m, target, i, i-n, -1, j, j+n,  1)
+    acc += fetch(m, target, i, i+n,  1, j, j-n, -1)
+    acc += fetch(m, target, i, i-n, -1, j, j-n, -1)
+    return acc
+
+def check2(m, i, j):
+    if m[i][j] != 'A':
+        return 0
+    target = ['M', 'A', 'S']
+    n = len(target)
+    acc = 0
+    acc += fetch(m, target, i-1, i+n-1,  1, j-1, j+n-1,  1)
+    acc += fetch(m, target, i+1, i+1-n, -1, j+1, j+1-n, -1)
+    acc += fetch(m, target, i-1, i+n-1,  1, j+1, j+1-n, -1)
+    acc += fetch(m, target, i+1, i+1-n, -1, j-1, j-1+n,  1)
+    if acc == 2:
+        return 1
+    else:
+        return 0
+
+def looper(m, func):
+    # probably a numpy reduce function for this...
+    rows, cols = m.shape
+    acc = 0
+    for i in range(rows):
+        for j in range(cols):
+            acc += func(m, i, j)
+    return acc
+
+a = np.loadtxt(sys.argv[1], dtype=str)
+b = np.array(list(map(list, a)))
+print("Part 1:", looper(b, check1))
+print("Part 2:", looper(b, check2))
