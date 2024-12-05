@@ -7,7 +7,6 @@ import re
 # hitting issues when diagonal slice goes negative, hence this mess:
 def fetch(m, target, i0, i1, ix, j0, j1, jx):
     n = len(target)
-    val = 0
     # Not sure why diagonal checks hate negative numbers?
     if i1 < 0:
         i1 = None
@@ -20,8 +19,9 @@ def fetch(m, target, i0, i1, ix, j0, j1, jx):
     else:
         res = m[i0:i1:ix, j0:j1:jx].diagonal()
     if len(res) == n and (res == target).all():
-        val = 1
-    return val
+        return 1
+    else:
+        return 0
 
 def check1(m, i, j):
     if m[i][j] != 'X':
