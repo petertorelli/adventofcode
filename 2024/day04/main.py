@@ -45,9 +45,9 @@ def check2(m, i, j):
     target = ['M', 'A', 'S']
     n = len(target)
     acc = 0
-    acc += fetch(m, target, i-1, i+n-1,  1, j-1, j+n-1,  1)
+    acc += fetch(m, target, i-1, i-1+n,  1, j-1, j-1+n,  1)
     acc += fetch(m, target, i+1, i+1-n, -1, j+1, j+1-n, -1)
-    acc += fetch(m, target, i-1, i+n-1,  1, j+1, j+1-n, -1)
+    acc += fetch(m, target, i-1, i-1+n,  1, j+1, j+1-n, -1)
     acc += fetch(m, target, i+1, i+1-n, -1, j-1, j-1+n,  1)
     if acc == 2:
         return 1
