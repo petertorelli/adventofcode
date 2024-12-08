@@ -24,9 +24,9 @@ for f in np.unique([x for x in m.flatten() if x != '.']):
         p1, p2 = c
         pd = p1 - p2
         raytrace(m, p1, pd, seen1, 1, operator.add)
-        raytrace(m, p1, pd, seen1, 1, operator.sub)
+        raytrace(m, p2, pd, seen1, 1, operator.sub)
         raytrace(m, p1, pd, seen2, 1000, operator.add)
-        raytrace(m, p1, pd, seen2, 1000, operator.sub)
+        raytrace(m, p2, pd, seen2, 1000, operator.sub)
 
 print("Part 1:", len(seen1))
 print("Part 2:", len(seen2))
