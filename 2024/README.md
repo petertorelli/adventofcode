@@ -7,4 +7,5 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 3   | minutes | Basic regex |
 | 4   | ~1 hour | More numpy matrix stuff (started with regex but then part2 required a restart) |
 | 5   | 15 min. | More array play with a dictionary. Brute force is still viable this early |
+| 6   | 5 hrs. | Started with fancy ray-trace on corners, then tried obstacles in front of each nextpos, but then went with brute force with all possible obstacles on all voids and a set. |
 
