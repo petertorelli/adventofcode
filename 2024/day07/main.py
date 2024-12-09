@@ -3,9 +3,7 @@ import sys
 from itertools import product, zip_longest, chain
 
 def permute(total, numbers, operators):
-    n = len(numbers) - 1
-    comb = list(product(operators, repeat=n))
-    for c in comb:
+    for c in product(operators, repeat=(len(numbers) - 1)):
         expr = chain(*zip_longest(numbers,c))
         expr = [x for x in expr if x is not None]
         acc = expr.pop(0)
@@ -24,8 +22,7 @@ def permute(total, numbers, operators):
 with open(sys.argv[1], 'r') as file:
     acc1, acc2 = 0, 0
     for line in file:
-        numbers = line.replace(':', '').split()
-        numbers = list(map(int, numbers))
+        numbers = [int(x) for x in line.replace(':', '').split()]
         total = numbers.pop(0)
         if permute(total, numbers, ['+', '*']):
             acc1 += total
