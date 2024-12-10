@@ -2,7 +2,7 @@
 import sys
 import numpy as np
 
-m = np.genfromtxt(sys.argv[1], dtype=object, delimiter=1, comments=None)
+m = np.genfromtxt(sys.argv[1], dtype=int, delimiter=1, comments=None)
 
 q = []
 # encode blocks
