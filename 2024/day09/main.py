@@ -46,8 +46,7 @@ for fid in range(len(q) >> 1, 0, -1):
         if delta > 0:
             q.insert(k + 1, (-1, delta))
 # Score = sumproduct of positions, but they're tuples
-acc = 0
-pos = 0
+acc, pos = 0, 0
 for e in q:
     for f in range(e[1]):
         if e[0] >= 0:
