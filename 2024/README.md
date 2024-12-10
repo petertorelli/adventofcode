@@ -10,3 +10,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 6   | 5 hrs. | Started with fancy ray-trace on corners, then tried obstacles in front of each nextpos, but then went with brute force with all possible obstacles on all voids and a set. |
 | 7   | 30 min. | Python's combinatorial tools are kinda cheating. |
 | 8   | 45 min. | Line walking with dictionaries and combinatorials. |
+| 9   | 3 hrs | Misread the directions, was coalescing unused space and running multiple passes. Just needed one pass in part 2 and leave unused space as-is. |
