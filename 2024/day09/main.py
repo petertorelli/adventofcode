@@ -32,8 +32,8 @@ for i in range(len(m)): # create list of tuples of files or free chunks
     else:
         q.append((i//2, int(m[i])))
 # defrag by file (right to left)
-for i in range(len(q) >> 1, 0, -1):
-    j = len(q) - next(x for x,y in enumerate(reversed(q)) if y[0] == i) - 1
+for fid in range(len(q) >> 1, 0, -1):
+    j = len(q) - next(x for x,y in enumerate(reversed(q)) if y[0] == fid) - 1
     k = None
     for l in range(0, j): # find the first place we can stick q[j]
         if q[l][0] < 0 and q[l][1] >= q[j][1]:
@@ -41,10 +41,10 @@ for i in range(len(q) >> 1, 0, -1):
             break
     if k: # swap, and add a new free chunk if we didn't use it all
         delta = q[k][1] - q[j][1] # compute before changing q[]!
-        q[k] = (i, q[j][1])
+        q[k] = (fid, q[j][1])
         q[j] = (-1, q[j][1])
         if delta > 0:
-            q.insert(k+1, (-1, delta))
+            q.insert(k + 1, (-1, delta))
 # Score = sumproduct of positions, but they're tuples
 acc = 0
 pos = 0
