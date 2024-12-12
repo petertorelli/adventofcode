@@ -11,4 +11,5 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 7   | 30 min. | Python's combinatorial tools are kinda cheating. |
 | 8   | 45 min. | Line walking with dictionaries and combinatorials. |
 | 9   | 3 hrs | Misread the directions, was coalescing unused space and running multiple passes. Just needed one pass in part 2 and leave unused space as-is. |
-| 10  | 30 min. | Deja vu. DFS pathfinding w/dictionaries. Yawn. |
+| 10  | 30 min. | Deja vu. DFS pathfinding w/dictionary. |
+| 11  | 1 hr | Deja vu, again. Cycle time, end of brute-force. *Sniff* |
