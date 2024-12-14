@@ -2,8 +2,8 @@
 import sys
 import numpy as np
 
-NESW = [[-1,0], [0,1], [1,0], [0,-1]]
-DIRS = [[i,j] for i in range(-1, 2) for j in range(-1, 2) if i or j]
+D4 = [[-1,0], [0,1], [1,0], [0,-1]]
+D8 = [[i,j] for i in range(-1, 2) for j in range(-1, 2) if i or j]
 
 m = np.genfromtxt(sys.argv[1], dtype='U1', delimiter=1)
 rows, cols = np.shape(m)
@@ -16,7 +16,7 @@ def isme(r, c, me):
 
 def getbedarea(r, c, me, bed, peri):
     bed.add((r, c))
-    for d in NESW:
+    for d in D4:
         nr, nc = r + d[0], c + d[1]
         if isme(nr, nc, me):
             if (nr, nc) not in bed:
@@ -29,7 +29,7 @@ def countcorners(bed, me):
     res = 0
     for ploc in bed:
         r, c = ploc
-        NW, N, NE, W, E, SW, S, SE = [isme(r + i, c + j, me) for i, j in DIRS]
+        NW, N, NE, W, E, SW, S, SE = [isme(r + i, c + j, me) for i, j in D8]
         res += sum([
             # internal corners
             N and W and not NW, 
