@@ -18,11 +18,11 @@ def getbedarea(r, c, me, bed, peri):
     bed.add((r, c))
     for d in NESW:
         nr, nc = r + d[0], c + d[1]
-        if not validloc(nr, nc) or m[nr, nc] != me:
-            peri += 1
         if isme(nr, nc, me):
             if (nr, nc) not in bed:
                 peri = getbedarea(nr, nc, me, bed, peri)
+        else:
+            peri += 1
     return peri
 
 def countcorners(bed, me):
