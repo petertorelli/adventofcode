@@ -2,25 +2,24 @@
 import sys
 import numpy as np
 
-D4 = [[-1,0], [0,1], [1,0], [0,-1]]
-D8 = [[i,j] for i in range(-1, 2) for j in range(-1, 2) if i or j]
-
-m = np.genfromtxt(sys.argv[1], dtype='U1', delimiter=1)
-rows, cols = np.shape(m)
+DIR4 = [[-1,0], [0,1], [1,0], [0,-1]]
+DIR8 = [[i,j] for i in range(-1, 2) for j in range(-1, 2) if i or j]
+GARDEN = np.genfromtxt(sys.argv[1], dtype='U1', delimiter=1)
+ROWS, COLS = np.shape(GARDEN)
 
 def validloc(r, c):
-    return (r in range(rows)) and (c in range(cols))
+    return (r in range(ROWS)) and (c in range(COLS))
 
 def isme(r, c, me):
-    return validloc(r, c) and (m[r][c] == me)
+    return validloc(r, c) and (GARDEN[r][c] == me)
 
-def getbedarea(r, c, me, bed, peri):
+def getbedmetrics(r, c, me, bed, peri):
     bed.add((r, c))
-    for d in D4:
+    for d in DIR4:
         nr, nc = r + d[0], c + d[1]
         if isme(nr, nc, me):
             if (nr, nc) not in bed:
-                peri = getbedarea(nr, nc, me, bed, peri)
+                peri = getbedmetrics(nr, nc, me, bed, peri)
         else:
             peri += 1
     return peri
@@ -29,30 +28,30 @@ def countcorners(bed, me):
     res = 0
     for ploc in bed:
         r, c = ploc
-        NW, N, NE, W, E, SW, S, SE = [isme(r + i, c + j, me) for i, j in D8]
+        nw, n, ne, w, e, sw, s, se = [isme(r + i, c + j, me) for i, j in DIR8]
         res += sum([
             # internal corners
-            N and W and not NW, 
-            N and E and not NE, 
-            S and W and not SW, 
-            S and E and not SE,
+            n and w and not nw,
+            n and e and not ne,
+            s and w and not sw,
+            s and e and not se,
             # external corners
-            not (N or W),
-            not (N or E),
-            not (S or W),
-            not (S or E)
+            not (n or w),
+            not (n or e),
+            not (s or w),
+            not (s or e)
         ])
     return res
 
 seen = set()
 acc1, acc2 = 0, 0
-for r in range(rows):
-    for c in range(cols):
+for r in range(ROWS):
+    for c in range(COLS):
         if (r, c) in seen:
             continue
-        plant = m[r, c]
+        plant = GARDEN[r, c]
         bed = set()
-        peri = getbedarea(r, c, plant, bed, 0)
+        peri = getbedmetrics(r, c, plant, bed, 0)
         area = len(bed)
         acc1 += area * peri
         sides = countcorners(bed, plant)
