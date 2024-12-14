@@ -15,20 +15,20 @@ def nextpos(m, r1, c1, d1, rx, cx):
     return True, [r1, c1, d1]
 
 def loopcheck(m, r1, c1, d1, rx, cx):
-    seen = {}
+    seen = set()
     while True:
         if (r1, c1, d1) in seen:
             return True
-        seen[(r1,c1,d1)] = 1
+        seen.add((r1,c1,d1))
         go, pos = nextpos(m, r1, c1, d1, rx, cx)
         if go == False:
             break
         (r1, c1, d1) = pos
 
 def part1(m, r1, c1, d1, rx, cx):
-    seen = {}
+    seen = set()
     while True:
-        seen[(r1,c1)] = 1
+        seen.add((r1,c1))
         go, pos = nextpos(m, r1, c1, d1, rx, cx)
         if go == False:
             break

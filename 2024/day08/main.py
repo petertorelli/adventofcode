@@ -9,16 +9,16 @@ def raytrace(m, p1, d, seen, n, func):
     while n > 0:
         pn = func(p1, d)
         if pn[0] >= 0 and pn[1] >= 0 and pn[0] < rx and pn[1] < cx:
-            seen[*pn] = 1
+            seen.add((pn[0], pn[1]))
         else:
             return
         p1 = pn
         n -= 1
 
 m = np.genfromtxt(sys.argv[1], dtype='U1', delimiter=1, comments=None)
-seen1 = {}
-seen2 = {}
-seen2.update({tuple(x): 1 for x in np.column_stack(np.where(m != '.'))})
+seen1 = set()
+seen2 = set()
+seen2.update({tuple(x) for x in np.column_stack(np.where(m != '.'))})
 for f in np.unique([x for x in m.flatten() if x != '.']):
     for c in combinations(np.column_stack(np.where(m == f)), 2):
         p1, p2 = c
