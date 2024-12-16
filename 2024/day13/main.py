@@ -3,6 +3,8 @@ import sys
 import re
 import math
 
+# https://en.wikipedia.org/wiki/Diophantine_equation
+# https://en.wikipedia.org/wiki/B%C3%A9zout's_identity
 # https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 
 def decomp(a, b):
@@ -26,21 +28,26 @@ def decomp(a, b):
 def findpresses(ax, ay, bx, by, tx, ty, translate):
     tx += translate
     ty += translate
+    # is it diophantine?
     gcdx = math.gcd(ax, bx)
     gcdy = math.gcd(ay, by)
     if (tx % gcdx != 0) or (ty % gcdy != 0):
         return None, None
+    # get the bezout coefficients
     ax2, bx2, tx2 = ax // gcdx, bx // gcdx, tx // gcdx
     cax, cbx = decomp(ax2, bx2)
     ax0, bx0 = cax * tx2, cbx * tx2
     ay2, by2, ty2 = ay // gcdy, by // gcdy, ty // gcdy
     cay, cby = decomp(ay2, by2)
     ay0, by0 = cay * ty2, cby * ty2
+    # construct the bezout equation forms (x + vt, y - ut)
+    # where v = b/d, u = a/d, and d=gcd(a,b)
     # ax(sx) = ax0 + bx2 * sx
     # bx(sx) = bx0 - ax2 * sx
     # ay(sy) = ay0 + by2 * sy
     # by(sy) = by0 - ay2 * sy
     # A's must be same, B's must be same ... Rearranging
+    # solve for sx & sy
     # ax0 + bx2 * sx = ay0 + by2 * sy
     # bx0 - ax2 * sx = by0 - ay2 * sy
     # ... or ...
