@@ -41,6 +41,7 @@ def findpresses(ax, ay, bx, by, tx, ty, translate):
     cay, cby = decomp(ay2, by2)
     ay0, by0 = cay * ty2, cby * ty2
     # construct the bezout equation forms (x + vt, y - ut)
+    # where v = b/d, u = a/d, and d=gcd(a,b)
     # ax(sx) = ax0 + bx2 * sx
     # bx(sx) = bx0 - ax2 * sx
     # ay(sy) = ay0 + by2 * sy
