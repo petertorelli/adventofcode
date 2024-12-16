@@ -15,3 +15,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 11  | 1 hr | Deja vu, again. Cycle time, end of brute-force. *Sniff* |
 | 12  | 5 hrs over 3 days | Made a stupid hard algorithm then realized the logic trick. I was counting turns while walking the perimeter, and then looking for containment relationships. Instead, any corner indicates a side, internal or external. No need for relationships between regions.|
 | 13  | 12 hrs multiple days | Learned about Diophantine equations, sympy, and the Extended Euclidean algorithm. Didn't expect to have to this much research so soon, but after Day 12 things always go sideways. |
+| 14  | 10 min. + 30 min watching | Most of the time was spent watch the image until I saw a tree. I didn't know what to search for so there was no algorithmic approach, just refining the window and slowing the interval (also used save/restore of positions0. |
