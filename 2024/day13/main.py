@@ -72,11 +72,6 @@ with open(sys.argv[1], 'r') as file:
         m = re.search(r'Prize: X=(\d+), Y=(\d+)', line)
         if m:
             tx, ty = int(m[1]), int(m[2])
-            a, b = symbols('a b')
-            solx = diop_linear(ax * a + bx * b - tx)
-            print(solx)
-            soly = diop_linear(ay * a + by * b - ty)
-            print(soly)
             p1, p2 = findpresses(ax, ay, bx, by, tx, ty, 0)
             if (p1, p2) != (None, None):
                 acc1 += p1 * 3 + p2
