@@ -17,3 +17,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 13  |Learned about Diophantine equations, Bezout, and the Extended Euclidean algorithm. Didn't expect to have to this much research so soon, but after Day 12 things always go sideways. |
 | 14  |Huh, visualization was actually required for this one. Most of the time was spent watch the image until I saw a tree. I didn't know what to search for so there was no algorithmic approach, just refining the window and slowing the interval (also used save/restore of positions). |
 | 15  |Kinda boring. Recursive 2D collision detection.|
+| 16  |Finding all paths in A* with the same score.|
