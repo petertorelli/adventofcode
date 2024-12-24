@@ -1,3 +1,5 @@
+```
+
 Register A: 22817223
 Register B: 0
 Register C: 0
@@ -53,48 +55,10 @@ C = 2 // pow(2,0) = 2
 B = 0 xor 2 = 2
 A = A // 8 = 0
 B = 2 xor 7 = 5
-
-7 [2] 0b111
-15 [2, 4] 0b1111
-
-
-
-
-    0 = B mod 8 means b is a multiple of 8
-    B xor 7 means it has 0b111 as the last three bits before this step
-    so B before 1,7 is 0b???????111
-    B = 0b????????111
-
-    4,5 is B xor C ahhhh shit.
-    7,5 -->
-    C is A // 2^B but B ends with 0b111...
-    A is [8 ** 15, 8 ** 16 - 1] but 2 ** 0b111111 is bigger than max(A) by a lot, so C = 0 if that big
-    
-    seems like B would only be 0b??111 which is 4 numbers
-
+hmmm
 
 16 digits, currently at 9
 A is divided by 8 every time
-
-Backwards
-
-B mod 8
-(B xor 7) mod 8
-((B xor C) xor 7) mod 8
-((B xor (A / pow(2, B))) xor 7) mod 8
-(((B xor 2) xor (A / pow(2, (B xor 2)))) xor 7) mod 8
-(
-    (
-        (
-            (A mod 8) xor 2
-        ) xor 
-            (
-                A / pow(2, ((A mod 8) xor 2))
-            )
-    )
-    xor 7
-) mod 8
-
 
 range....
 >>> 8 ** 15
@@ -116,14 +80,22 @@ not really sure what I did here but by re-using the bottom bits when I found a
 subset of the program I was able to build the number.
 
 Program:         2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5, 5, 3, 0
-
- 15375          [2, 4, 1, 2, 7]                                                                    0b11110000001111
- 80911          [2, 4, 1, 2, 7, 5]                                                              0b10011110000001111
-343055          [2, 4, 1, 2, 7, 5, 4]                                                         0b1010011110000001111
+              7 [2 ]                                                                                                          111
+             15 [2, 4]                                                                                                      1.111
+              ? [2, 4, 1]                                                                                           ? no solution
+              ? [2, 4, 1, 2]                                                                                        ? no solution
+          15375 [2, 4, 1, 2, 7]                                                                                11.110.000.001.111
+          80911 [2, 4, 1, 2, 7, 5]                                                                         10.011.110.000.001.111
+         343055 [2, 4, 1, 2, 7, 5, 4]                                                                   1.010.011.110.000.001.111
+              ? [2, 4, 1, 2, 7, 5, 4, 5]                                                                          ? no solution
+   169103670287 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5]                        10.011.101.011.111.010.111.010.011.110.000.001.111
+190384615275535 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5, 5, 3, 0]  101.011.010.010.011.101.011.111.010.111.010.011.110.000.001.111
 ... when trying to do this w/code i get false starts ... ???
-       89144335 [2, 4, 1, 2, 7, 5, 4, 5, 0]                                           0b101010100000011110000001111 ??? wrong?
+ 27656894364687 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5, 5, 3]         110.010.010.011.101.011.111.010.111.010.011.110.000.001.111 ??? wrong?
+       89144335 [2, 4, 1, 2, 7, 5, 4, 5, 0]                                                   101.010.100.000.011.110.000.001.111 ??? wrong?
       894516239 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3]                                     0b110101010100010011110000001111 ??? wrong?
-   169103670287 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5]                    0b10011101011111010111010011110000001111
  27656894364687 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5, 5, 3]       0b110010010011101011111010111010011110000001111 ??? wrong?
-190384615275535 [2, 4, 1, 2, 7, 5, 4, 5, 0, 3, 1, 7, 5, 5, 3, 0] 0b101011010010011101011111010111010011110000001111
 
+had to go out to to 20 bits in the iteration to skip false solutions?
+
+```

@@ -63,6 +63,32 @@ temp = copy.deepcopy(machine_state)
 run(program, temp)
 print("Part 1:", ','.join(map(str, temp['out'])))
 
+intprogram = list(map(int, program))
+got = 0
+m = 0
+sneak = 3
+go = True
+ngot = 0
+shift = 0
+while go:
+    print("Loop: got=", got, "m=", m, "shift=", shift)
+    for i in range(1, 1 << 20):
+        a = (i << shift) | got
+        #print("a = ", a, bin(a))
+        temp = copy.deepcopy(machine_state)
+        run(program, temp, a)
+        n = len(temp['out'])
+        target = intprogram[0:n]
+        if target == temp['out']:
+            ngot = a
+            print(a, target, bin(ngot))
+            if n == len(program):
+                print("Done")
+                go = False
+                break
+    got = ngot
+    shift = got.bit_length()
+
 
 
 intprogram = list(map(int, program))
