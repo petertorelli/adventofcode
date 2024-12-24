@@ -18,3 +18,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 14  |Huh, visualization was actually required for this one. Most of the time was spent watch the image until I saw a tree. I didn't know what to search for so there was no algorithmic approach, just refining the window and slowing the interval (also used save/restore of positions). |
 | 15  |Kinda boring. Recursive 2D collision detection.|
 | 16  |Finding all paths in A* with the same score.|
+| 17  |Found the answer accidentally while looking at bit patterns and cycles. But attempting to recreate my command-line analysis in code is failing due to false positives as the set grows with A.|
