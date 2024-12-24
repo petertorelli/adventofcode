@@ -64,10 +64,8 @@ run(program, temp)
 print("Part 1:", ','.join(map(str, temp['out'])))
 
 intprogram = list(map(int, program))
-got = 0
-m = 0
-sneak = 3
 go = True
+got = 0
 ngot = 0
 shift = 0
 while go:
