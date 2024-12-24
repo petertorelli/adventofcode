@@ -19,3 +19,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 15  |Kinda boring. Recursive 2D collision detection.|
 | 16  |Finding all paths in A* with the same score.|
 | 17  |Virtual machine, but self-similar code. Found the answer accidentally while looking at bit patterns and cycles. But attempting to recreate my command-line analysis in code is failing due to false positives as the set grows with A. See readme in day17.|
+| 18  |Another A* search. That's weird, brute force shouldn't be an option on day 18, but here we are.|
