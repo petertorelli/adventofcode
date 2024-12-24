@@ -69,7 +69,7 @@ got = 0
 ngot = 0
 shift = 0
 while go:
-    print("Loop: got=", got, "m=", m, "shift=", shift)
+    print("Loop: got=", got, "shift=", shift)
     for i in range(1, 1 << 20):
         a = (i << shift) | got
         #print("a = ", a, bin(a))
