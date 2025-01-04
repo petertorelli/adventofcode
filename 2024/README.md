@@ -21,3 +21,4 @@ Notes for this year. Doing all Python. Need to learn how to transition from thin
 | 17  |Virtual machine, but self-similar code. Found the answer accidentally while looking at bit patterns and cycles. But attempting to recreate my command-line analysis in code is failing due to false positives as the set grows with A. See readme in day17.|
 | 18  |Another A* search. That's weird, brute force shouldn't be an option on day 18, but here we are.|
 | 19  |Hard. Spent too much time trying to fuse together partion solutions, rather than accumulating the # of solutions that fit at each point in the pattern.|
+| 20  |Funny Day 20 was so much easier than Day 19. Actually got the idea from a 3b1b video I saw a few weeks ago about topology.|
