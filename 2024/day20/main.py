@@ -27,10 +27,8 @@ def extract_paths(distances, savings, cheatsize):
     total = 0
     for i in range(0, n):
         for j in range(i + 1, n):
-            ti = distances[i]
-            tj = distances[j]
-            loci = ti[0]
-            locj = tj[0]
+            ti, tj = distances[i], distances[j]
+            loci, locj = ti[0], tj[0]
             manhat = abs(loci[0] - locj[0]) + abs(loci[1] - locj[1])
             # heh: forgot to subtract cheat steps from total steps!
             dsteps = abs(ti[1] - tj[1]) - manhat
