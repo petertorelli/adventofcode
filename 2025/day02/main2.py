@@ -18,10 +18,11 @@ def get_poss(x, upper):
     # compute all integer fractions from 1 ... len(n)
     for q in range(1, len(parts)):
         if len(parts) % q == 0:
-            for qq in range(1, (len(parts) // q) + 1):
+            repeat = len(parts) // q
+            for qq in range(1, repeat + 1):
                 lhs = (qq - 1) * q
                 rhs = qq * q
-                expand(''.join(parts[lhs : rhs]), poss, len(parts) // q, upper)
+                expand(''.join(parts[lhs : rhs]), poss, repeat, upper)
     return poss
 
 def step1(strx, lower, upper, found):
@@ -39,8 +40,6 @@ with open(sys.argv[1], 'r') as file:
         (a, b) = entry.split('-')
         ia = int(a)
         ib = int(b)
-        a_odd = len(a) & 1
-        b_odd = len(b) & 1
         if (len(b) - len(a)) > 1:
             print("Nope!")
             sys.exit()
@@ -48,6 +47,4 @@ with open(sys.argv[1], 'r') as file:
         step1(b, ia, ib, found)
         for x in found:
             count += int(x)
-    print(count)        
-
-        
+    print(count)
