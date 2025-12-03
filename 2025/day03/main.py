@@ -3,13 +3,14 @@
 import sys
 
 def calc(bats, n):
-    total = 0
+    total = ""
     for i in range(0, n):
+        # floopid indices... i swear this year...
         tail = (len(bats) - (n - i)) + 1
-        [p, mx] = max(enumerate(bats[0 : tail]), key=lambda x: x[1])
-        total += (10 ** ((n - i) - 1)) * mx
+        [p, mx] = max(enumerate(bats[ : tail]), key=lambda x: x[1])
         bats = bats[p + 1 : ]
-    return total
+        total += str(mx)
+    return int(total)
 
 with open(sys.argv[1], 'r') as file:
     total1 = 0
