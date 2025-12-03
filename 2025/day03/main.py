@@ -5,7 +5,7 @@ import sys
 def calc(bats, n):
     total = ""
     for i in range(0, n):
-        # floopid indices... i swear this year...
+        # bloopid indices... i swear this year...
         tail = (len(bats) - (n - i)) + 1
         [p, mx] = max(enumerate(bats[ : tail]), key=lambda x: x[1])
         bats = bats[p + 1 : ]
