@@ -2,40 +2,25 @@
 
 import sys
 
-def merge_ranges(r1):
-    while True:
-        start = len(r1)
-        r2 = []
-        while len(r1) > 0:
-            r = r1.pop(0)
-            if len(r2) == 0:
-                r2.append(r)
-            else:
-                merged = False
-                for ri in r2:
-                    if r[0] >= ri[0] and r[1] <= ri[1]:
-                        merged = True
-                    elif r[0] <= ri[0] and r[1] >= ri[1]:
-                        ri[0] = r[0]
-                        ri[1] = r[1]
-                        merged = True
-                    elif r[0] <= ri[0] and r[1] >= ri[0] and r[1] <= ri[1]:
-                        ri[0] = r[0]
-                        merged = True
-                    elif r[1] >= ri[1] and r[0] <= ri[1] and r[0] >= ri[0]:
-                        ri[1] = r[1]
-                        merged = True
-                    if merged:
-                        break
-                if merged is False:
-                    r2.append(r)
-        r1 = r2
-        if start == len(r2):
-            break
-    c = 0
-    for r in r1:
-        c += (r[1] - r[0]) + 1
-    return c
+def merge_ranges(ranges):
+    ranges = sorted(ranges, key=lambda r: r[0])
+
+    merged = []
+    cur_start, cur_end = ranges[0]
+
+    for start, end in ranges[1:]:
+        # eat the next range if it overlaps
+        if start <= cur_end + 1:
+            cur_end = max(cur_end, end)
+        # if not it is its own range, this becomes our new compare
+        else:
+            merged.append((cur_start, cur_end))
+            cur_start, cur_end = start, end
+
+    # if the last range ate everything still need to append it
+    merged.append((cur_start, cur_end))
+
+    return sum((end - start + 1) for start, end in merged)
 
 with open(sys.argv[1], 'r') as file:
     ranges = []
