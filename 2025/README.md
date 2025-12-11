@@ -6,3 +6,4 @@
 | 4   |Too easy to even describe? Multi-pass element removal?|
 | 5   |Range merges.|
 | 6   |Text to matrix manipulation; numpy genfromtxt() is like cheating.|
+| 7   |Graph traversal with memoization.|
