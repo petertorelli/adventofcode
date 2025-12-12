@@ -7,3 +7,4 @@
 | 5   |Range merges.|
 | 6   |Text to matrix manipulation; numpy genfromtxt() is like cheating.|
 | 7   |Graph traversal with memoization.|
+| 8   |3D distance clustering.|
